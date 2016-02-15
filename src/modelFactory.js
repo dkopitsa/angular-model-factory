@@ -615,6 +615,10 @@ module.provider('$modelFactory', function(){
                         }
                     }
 
+                    if (options.appendSlash) {
+                        uri += '/';
+                    }
+
                     if(clone.method === 'GET' && (angular.isString(data) || angular.isNumber(data))){
                         // if we have a get method and its a number or a string
                         // you can assume i'm wanting to do something like:
