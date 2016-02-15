@@ -117,6 +117,11 @@ module.provider('$modelFactory', function(){
         stripTrailingSlashes: true,
 
         /**
+         * Append slash to autocreated detail url. stripTrailingSlashes should be false.
+         */
+        appendSlash: false,
+
+        /**
          * Default values for a new instance.
          * This will only be populated if the property
          * is undefined.
@@ -605,6 +610,9 @@ module.provider('$modelFactory', function(){
                     // attach the pk referece by default if it is a 'core' type
                     if(action === 'get' || action === 'post' || action === 'update' || action === 'delete'){
                         uri += '{/' + options.pk + '}';
+                        if (options.appendSlash) {
+                            uri += '/';
+                        }
                     }
 
                     if(clone.method === 'GET' && (angular.isString(data) || angular.isNumber(data))){
