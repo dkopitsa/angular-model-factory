@@ -713,7 +713,10 @@ module.provider('$modelFactory', function(){
                     } else {
                         def.resolve();
                     }
-                }, def.reject).finally(function () {
+                    promiseTracker[signature] = undefined;
+                }, 
+                function (response) {
+                    def.reject();
                     promiseTracker[signature] = undefined;
                 });
 
